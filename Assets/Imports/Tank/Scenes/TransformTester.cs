@@ -15,9 +15,11 @@ public class TransformTester : MonoBehaviour
     [SerializeField] float rate;
     [SerializeField] Vector3 targetPos;
     [SerializeField] float moveSpeed;
+    [SerializeField] float rotateSpeed;
    
     private void Update()
     {
+        #region Position
         /* 1. 백터를 이용한 위치 설정
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -36,7 +38,30 @@ public class TransformTester : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
         */
 
-        // 4. 보간해서 이동시키기
+        /* 4. 보간해서 이동시키기
         transform.position = Vector3.Lerp(source.position, target.position, rate);
+        */
+        #endregion
+
+
+        // 1. 회전 직접 지정 : Euler 를 이용하여 Quaternion으로 변환하여 사용 권장
+        //transform.rotation = Quaternion.Euler(0, 60, 0);
+
+        // 1-1. 오일러를 쿼터니언으로 변환
+        //Quaternion a = Quaternion.Euler(0, 60, 0);
+        // 1-2. 쿼터니언을 오일러로 변환
+        //Vector3 b = transform.rotation.eulerAngles;
+        // 1-3. 방향을 쿼터니언으로 변환
+        //Quaternion c = Quaternion.LookRotation(Vector3.right);
+
+
+        // 2. 축을 기준으로 회전
+        //transform.Rotate(Vector3.up, rotateSpeed * Time.deltaTime);
+
+        // 3. 지점을 기준으로 회전
+        //transform.RotateAround(target.position, Vector3.up, rotateSpeed * Time.deltaTime);
+
+        // 4. 지점을 바라보도록 회전
+        //transform.LookAt(target.position);
     }
 }
