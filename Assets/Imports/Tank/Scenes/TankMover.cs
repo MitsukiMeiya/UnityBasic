@@ -16,6 +16,7 @@ public class TankMover : MonoBehaviour
     {
         float input = Input.GetAxis("Vertical");
         transform.Translate(Vector3.forward * moveSpeed * input * Time.deltaTime);
+
     }
 
     private void Rotate()
