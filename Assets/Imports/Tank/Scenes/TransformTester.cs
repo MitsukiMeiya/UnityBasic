@@ -10,6 +10,9 @@ public class TransformTester : MonoBehaviour
      * 게임오브젝트는 반드시 하나의 트랜스폼 컴포넌트를 가지고 있으며 추가 & 제거할 수 없음
      */
     [SerializeField] Transform target;
+    [SerializeField] Transform source;
+    [Range(0f, 1f)]
+    [SerializeField] float rate;
     [SerializeField] Vector3 targetPos;
     [SerializeField] float moveSpeed;
    
@@ -29,7 +32,11 @@ public class TransformTester : MonoBehaviour
         }
         */
 
-        // 3. 목적지로 이동하디
+        /* 3. 목적지로 이동시키기
         transform.position = Vector3.MoveTowards(transform.position, target.position, moveSpeed * Time.deltaTime);
+        */
+
+        // 4. 보간해서 이동시키기
+        transform.position = Vector3.Lerp(source.position, target.position, rate);
     }
 }
