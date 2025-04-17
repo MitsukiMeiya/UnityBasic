@@ -44,6 +44,7 @@ public class ObjectPool : MonoBehaviour
         {
             return Instantiate(prefab, position, rotation);
         }
+
         PooledObject instance = pool[pool.Count - 1];
         pool.RemoveAt(pool.Count - 1);
 
