@@ -5,17 +5,16 @@ using UnityEngine;
 public class Shooter : MonoBehaviour
 {
     [SerializeField] GameObject bulletPrefab;
-    [SerializeField] Transform muzzlePoinst;
+    [SerializeField] Transform muzzlePoint;
+    [SerializeField] ObjectPool bulletPool;
 
     [Range(10,30)]
     [SerializeField] float bulletSpeed;
 
     public void Fire()
     {
-        GameObject instance = Instantiate(bulletPrefab, muzzlePoinst.position, muzzlePoinst.rotation);
+        PooledObject instance = bulletPool.GetPool(muzzlePoint.position, muzzlePoint.rotation);
         Rigidbody bulletRigidbody = instance.GetComponent<Rigidbody>();
-        bulletRigidbody.velocity = muzzlePoinst.forward * bulletSpeed;
-
-        Destroy(instance, 5);
+        bulletRigidbody.velocity = muzzlePoint.forward * bulletSpeed;
     }
 }
